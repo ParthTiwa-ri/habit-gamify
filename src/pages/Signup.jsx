@@ -53,7 +53,7 @@ function Signup() {
                   {...register("password")}
                 />
                 <label className="label">
-                  <Link to="/signup" className="label-text-alt link link-hover">
+                  <Link to="/login" className="label-text-alt link link-hover">
                     Already have a account? Login
                   </Link>
                 </label>

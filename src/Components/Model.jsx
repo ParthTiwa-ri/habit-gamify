@@ -12,18 +12,14 @@ function Model({ allCompleted, setClaimed }) {
     reset();
     document.getElementById("my_modal_4").close();
   }
-  function handleReset() {
-    resetHabitCompletion();
-    setClaimed(false);
-  }
+  // function handleReset() {
+  //   resetHabitCompletion();
+  //   setClaimed(false);
+  // }
 
   return (
     <div>
-      {allCompleted ? (
-        <button onClick={handleReset} className="btn px-10">
-          Reset
-        </button>
-      ) : (
+      {allCompleted ? null : (
         <>
           {" "}
           <button

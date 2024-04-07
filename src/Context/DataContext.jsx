@@ -165,7 +165,39 @@ export const HabitProvider = ({ children }) => {
       localStorage.setItem("lastDate", currentDate);
     }
   }, []);
+  const logout = () => {
+    // Clear all items from local storage
+    localStorage.clear();
 
+    // Reset states to initial values
+    setClaimed(false);
+    setUserData(["2024-04-01", "2024-04-04", "2024-04-05"]);
+    setHabitData([
+      {
+        id: 1,
+        title: "Morning Jog",
+        desc: "Start your day with a refreshing jog to boost your energy levels.",
+        timing: "6:00-7:00",
+        img: "/images/jog.jpeg",
+        completed: false,
+      },
+      {
+        id: 2,
+        title: "Strength Training",
+        desc: "Enhance your strength and endurance with a focused strength training session.",
+        img: "/images/weight.jpeg",
+        completed: false,
+      },
+      {
+        id: 3,
+        title: "Nutritious Breakfast",
+        timing: "9:00-10:30",
+        desc: "Fuel your body with a nutritious breakfast to support your training and recovery.",
+        img: "/images/breakfast.jpeg",
+        completed: false,
+      },
+    ]);
+  };
   // Inside your DataContext or wherever you manage habit data
   function resetHabitCompletion() {
     // Assuming habitData is a state variable holding your habit data
@@ -211,6 +243,7 @@ export const HabitProvider = ({ children }) => {
         setUserData,
         isClaimed,
         setClaimed,
+        logout,
       }}
     >
       {children}

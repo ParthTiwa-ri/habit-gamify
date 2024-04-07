@@ -1,8 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../Context/AuthContext";
+import { useHabitContext } from "../Context/DataContext";
 
 function Header() {
   const { isAuth } = useAuthContext();
+  const { logout } = useHabitContext();
+  const navigate = useNavigate();
+  function handleLogout() {
+    logout();
+    navigate("/login");
+  }
   return (
     <div className="navbar bg-base-200">
       <div className="flex-1">
@@ -62,7 +69,7 @@ function Header() {
               </li>
 
               <li>
-                <Link to="/login">Logout</Link>
+                <button onClick={handleLogout}>Logout</button>
               </li>
             </ul>
           </div>
