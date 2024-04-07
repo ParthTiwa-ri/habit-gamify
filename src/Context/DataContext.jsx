@@ -67,7 +67,14 @@ export const HabitProvider = ({ children }) => {
   }, []);
   const logout = () => {
     // Clear all items from local storage
-    localStorage.clear();
+    const keys = Object.keys(localStorage);
+
+    // Iterate through the keys and remove items except for "user" and "isauth"
+    keys.forEach((key) => {
+      if (key !== "user" && key !== "isauth") {
+        localStorage.removeItem(key);
+      }
+    });
 
     // Reset states to initial values
     setClaimed(false);
