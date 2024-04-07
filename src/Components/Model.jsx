@@ -21,7 +21,6 @@ function Model({ allCompleted, setClaimed }) {
     <div>
       {allCompleted ? null : (
         <>
-          {" "}
           <button
             onClick={() => document.getElementById("my_modal_4").showModal()}
             className="btn btn-wide flex gap-2 justify-center"
