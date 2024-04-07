@@ -1,16 +1,26 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import Header from "./Components/Header";
 
 // import { habitData } from "./data/habitData";
 import Model from "./Components/Model";
+import Reward from "./Components/Reward";
 import { useHabitContext } from "./Context/DataContext";
 
 export default function App() {
   const { habitData } = useHabitContext();
+  const [allCompleted, setAllCompleted] = useState(false);
+  useEffect(() => {
+    // Check if all habits are completed
+    const areAllCompleted = habitData.every((habit) => habit.completed);
+
+    // Update allCompleted state
+    setAllCompleted(areAllCompleted);
+  }, [habitData]);
   return (
     <main>
       <Header />
-
+      {allCompleted ? <Reward /> : null}
       <section className="mainData mx-5">
         <div className="titleContainer flex justify-between mt-5 ">
           <h1 className="text-5xl ">Today Activities</h1>
@@ -45,8 +55,13 @@ export default function App() {
 // }
 
 function ListCard({ item }) {
+  const { markAsComplete } = useHabitContext();
+  function handleComplete() {
+    markAsComplete(item.id);
+  }
+
   return (
-    <div className="card card-compact w-72  bg-base-content text-base-100 shadow-xl">
+    <div className="card card-compact w-72  bg-base-content text-base-100 shadow-xl transition-transform hover:scale-105 duration-500">
       <figure>
         <img src={item.img} alt="Shoes" />
       </figure>
@@ -54,7 +69,13 @@ function ListCard({ item }) {
         <h2 className="card-title">{item.title}</h2>
         <p>If a dog chews shoes whose shoes does he choose?</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+          {item.completed === false ? (
+            <button onClick={handleComplete} className=" mt-2 btn btn-primary">
+              Mark as Complete
+            </button>
+          ) : (
+            <button className=" mt-2 btn btn-secondary">Completed</button>
+          )}
         </div>
       </div>
     </div>

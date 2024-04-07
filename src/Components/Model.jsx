@@ -6,9 +6,10 @@ function Model() {
   const { register, handleSubmit, reset } = useForm();
   const { updateHabitData } = useHabitContext();
   function onSubmit(data) {
-    const newHabit = { ...data };
+    const newHabit = { ...data, img: "/images/watch.png", completed: false };
     updateHabitData((item) => [...item, newHabit]);
     reset();
+    document.getElementById("my_modal_4").close();
   }
 
   return (
@@ -20,7 +21,7 @@ function Model() {
         <MdAdd className="text-3xl" />
         <span className="text-xl"> New Activity</span>
       </button>
-      <dialog id="my_modal_4" className="modal">
+      <dialog id="my_modal_4" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box w-5/12 max-w-5xl mb-5">
           <h3 className="font-bold text-lg mb-5">Add New Habit</h3>
           <div>

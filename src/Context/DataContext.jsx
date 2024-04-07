@@ -16,17 +16,41 @@ export const HabitProvider = ({ children }) => {
       title: "Reading Book",
       time: "7:30-10:30",
       img: "/images/watch.png",
+      completed: false,
+    },
+    {
+      id: 2,
+      title: "Reading Book",
+      time: "7:30-10:30",
+      img: "/images/watch.png",
+      completed: true,
+    },
+    {
+      id: 3,
+      title: "Reading Book",
+      time: "7:30-10:30",
+      img: "/images/watch.png",
+      completed: false,
     },
     // Add other habits here
   ]);
 
+  const markAsComplete = (habitId) => {
+    setHabitData((prevData) =>
+      prevData.map((habit) =>
+        habit.id === habitId ? { ...habit, completed: true } : habit
+      )
+    );
+  };
   // Function to update habit data
   const updateHabitData = (newData) => {
     setHabitData(newData);
   };
 
   return (
-    <HabitContext.Provider value={{ habitData, updateHabitData }}>
+    <HabitContext.Provider
+      value={{ habitData, updateHabitData, markAsComplete }}
+    >
       {children}
     </HabitContext.Provider>
   );
