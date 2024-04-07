@@ -1,8 +1,12 @@
+import { Link } from "react-router-dom";
+
 function Header() {
   return (
     <div className="navbar bg-base-200">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to="/homepage" className="btn btn-ghost text-xl">
+          HabitPro
+        </Link>
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">
@@ -28,15 +32,7 @@ function Header() {
           <div
             tabIndex={0}
             className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
-          >
-            <div className="card-body">
-              <span className="font-bold text-lg">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
-              <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
-              </div>
-            </div>
-          </div>
+          ></div>
         </div>
         <div className="dropdown dropdown-end">
           <div
@@ -56,16 +52,14 @@ function Header() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
           >
             <li>
-              <a className="justify-between">
+              <Link to="/dashboard" className="justify-between">
                 Profile
                 <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
+
             <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
+              <Link to="/">Logout</Link>
             </li>
           </ul>
         </div>

@@ -1,0 +1,41 @@
+.react-calendar {
+  /* max-width: 400px; Adjust width */
+  background-color: gray; /* Change background color */
+  border-radius: 50px;
+  padding: 20px;
+}
+
+.react-calendar .react-calendar__tile--active {
+  background: #007bff;
+}
+
+.react-calendar .react-calendar__tile--now {
+  background: #ff6347;
+}
+
+.react-calendar__tile {
+  width: 50px; /* Adjust width */
+  height: 50px; /* Adjust height */
+  border-radius: 100px;
+}
+
+.highlighted {
+  background-color: #ffd700; /* Change highlighted date color */
+}
+
+.react-calendar__month-view__days__day--weekend {
+  /* background-color: inherit; Set to inherit from parent */
+  color: inherit; /* Set to inherit from parent */
+}
+.react-calendar .react-calendar__tile--now {
+  background: inherit;
+}
+/*
+.react-calendar .react-calendar__tile--active {
+  background: none;
+}
+
+react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #e6e6e6;
+} */

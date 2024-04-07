@@ -6,7 +6,7 @@ function Model() {
   const { register, handleSubmit, reset } = useForm();
   const { updateHabitData } = useHabitContext();
   function onSubmit(data) {
-    const newHabit = { ...data, img: "/images/watch.png", completed: false };
+    const newHabit = { ...data, img: "/images/new.avif", completed: false };
     updateHabitData((item) => [...item, newHabit]);
     reset();
     document.getElementById("my_modal_4").close();
