@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../Context/AuthContext";
 
 function Header() {
+  const { isAuth } = useAuthContext();
   return (
     <div className="navbar bg-base-200">
       <div className="flex-1">
@@ -34,35 +36,42 @@ function Header() {
             className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
           ></div>
         </div>
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-              />
+        {isAuth ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src="/images/pngwing.com.png"
+                />
+              </div>
             </div>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
-          >
-            <li>
-              <Link to="/dashboard" className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </Link>
-            </li>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+            >
+              <li>
+                <Link to="/dashboard" className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </Link>
+              </li>
 
-            <li>
-              <Link to="/">Logout</Link>
-            </li>
-          </ul>
-        </div>
+              <li>
+                <Link to="/login">Logout</Link>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <Link className="btn bg-base-300" to="/login">
+            Login
+          </Link>
+        )}
+        {/*  */}
       </div>
     </div>
   );

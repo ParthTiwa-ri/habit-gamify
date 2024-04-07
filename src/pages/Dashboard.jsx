@@ -1,4 +1,5 @@
 import Header from "../Components/Header";
+import { useAuthContext } from "../Context/AuthContext";
 import { useHabitContext } from "../Context/DataContext";
 import MyChart from "../ui/BarChart";
 
@@ -7,6 +8,7 @@ import PieChart from "../ui/PieChart";
 
 function Dashboard() {
   const { userData } = useHabitContext();
+  const { user } = useAuthContext();
   console.log(userData);
   const length = userData.length;
   return (
@@ -15,7 +17,7 @@ function Dashboard() {
       <div className="m-10">
         <header>
           <h2 className="text-5xl">
-            Welcome <p className=" inline text-green-500">Parth Tiwari</p>
+            Welcome <p className=" inline text-green-500">{user.name}</p>
           </h2>
         </header>
         <section className="my-10">

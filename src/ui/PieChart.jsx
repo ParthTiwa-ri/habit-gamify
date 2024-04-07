@@ -10,7 +10,7 @@ const PieChart = ({ completedTasks }) => {
   const completedCount = completedTasks.length;
   // Assuming total tasks count is 30 (you can change it accordingly)
   const totalCount = 30;
-  // Calculate the count of incomplete tasks
+
   const incompleteCount = totalCount - completedCount;
 
   // Data for the pie chart

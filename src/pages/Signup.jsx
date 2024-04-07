@@ -2,30 +2,36 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../Context/AuthContext";
 
-function Login() {
-  const { register, handleSubmit } = useForm();
+function Signup() {
+  const { register, handleSubmit, reset } = useForm();
+  const { setUser } = useAuthContext();
   const navigate = useNavigate();
-  const { setAuth, user } = useAuthContext();
-  function handleLogin(data) {
-    if (data.email === user.email && data.password === user.password)
-      navigate("/homepage");
-    setAuth(true);
+  function handleSignup(data) {
+    setUser(data);
+    reset();
+    navigate("/login");
   }
+
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold text-slate-200">
-              HabitTrackr helps you build new routines.
-            </h1>
-            <p className="py-6  text-slate-500">
-              Log, categorize, and track your daily habits effortlessly.
-            </p>
+            <h1 className="text-5xl font-bold text-slate-200">Habitr</h1>
+            <p className="py-6  text-slate-500"></p>
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleSubmit(handleLogin)} className="card-body">
+            <form onSubmit={handleSubmit(handleSignup)} className="card-body">
               <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Full Name</span>
+                </label>
+                <input
+                  type="name"
+                  className="input input-bordered"
+                  required
+                  {...register("name")}
+                />
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
@@ -48,7 +54,7 @@ function Login() {
                 />
                 <label className="label">
                   <Link to="/signup" className="label-text-alt link link-hover">
-                    Dont have an account? Sign Up
+                    Already have a account? Login
                   </Link>
                 </label>
               </div>
@@ -63,4 +69,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

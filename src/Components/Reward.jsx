@@ -10,11 +10,14 @@ function Reward({ setClaimed }) {
     if (!userData) {
       setUserData([currentDate]); // Initialize userData with currentDate if it's empty
     } else {
-      setUserData((prevUserData) => [...prevUserData, currentDate]); // Add currentDate to userData
+      if (!userData.includes(currentDate)) {
+        setUserData(prevUserData => [...prevUserData, currentDate]); // Add currentDate to userData if it's not already present
+      }
     }
     // setAllCompleted(false);
     setClaimed(true);
-  }
+}
+
   return (
     <div className="absolute inset-0 bg-slate-200/50 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="relative p-5 h-3/6 bg-base-content text-green-500 shadow-2xl rounded-lg">

@@ -6,10 +6,13 @@ import Header from "../Components/Header";
 import Model from "../Components/Model";
 import Reward from "../Components/Reward";
 import { useHabitContext } from "../Context/DataContext";
+import { useAuthContext } from "../Context/AuthContext";
 
 export default function HomePage() {
   const { habitData, isClaimed, setClaimed } = useHabitContext();
 
+  const { isAuth } = useAuthContext();
+  const [error, setError] = useState(false);
   const [allCompleted, setAllCompleted] = useState(false);
   useEffect(() => {
     // Check if all habits are completed
@@ -18,9 +21,17 @@ export default function HomePage() {
     // Update allCompleted state
     setAllCompleted(areAllCompleted);
   }, [habitData]);
+
   return (
     <main>
       <Header />
+      {error ? (
+        <div className="toast">
+          <div className="alert alert-info">
+            <span>Kindly Login First</span>
+          </div>
+        </div>
+      ) : null}
       {allCompleted && isClaimed === false ? (
         <Reward setAllCompleted={setAllCompleted} setClaimed={setClaimed} />
       ) : null}
@@ -28,7 +39,7 @@ export default function HomePage() {
       <section className="mainData mx-5">
         <div className="titleContainer flex justify-between mt-5 ">
           <h1 className="text-5xl ">Today Activities</h1>
-          <Model />
+          <Model allCompleted={allCompleted} setClaimed={setClaimed} />
         </div>
         <span className="ml-2 mt-2">Manage your habits</span>
 
@@ -39,7 +50,12 @@ export default function HomePage() {
 
           <ul className="flex gap-8 flex-wrap">
             {habitData.map((item) => (
-              <ListCard key={item.id} item={item} />
+              <ListCard
+                key={item.id}
+                item={item}
+                isAuth={isAuth}
+                setError={setError}
+              />
             ))}
           </ul>
         </div>
@@ -58,10 +74,13 @@ export default function HomePage() {
 //   );
 // }
 
-function ListCard({ item }) {
+function ListCard({ item, isAuth, setError }) {
   const { markAsComplete } = useHabitContext();
   function handleComplete() {
-    markAsComplete(item.id);
+    if (isAuth) markAsComplete(item.id);
+    else {
+      setError(true);
+    }
   }
 
   return (
