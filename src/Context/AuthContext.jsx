@@ -12,10 +12,10 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("isAuth", JSON.stringify(isAuth));
-  }, [user, isAuth]);
+  // useEffect(() => {
+  //   localStorage.setItem("user", JSON.stringify(user));
+  //   localStorage.setItem("isAuth", JSON.stringify(isAuth));
+  // }, [user, isAuth]);
   return (
     <AuthContext.Provider value={{ isAuth, setAuth, setUser, user }}>
       {children}

@@ -17,6 +17,7 @@ export const HabitProvider = ({ children }) => {
       "2024-04-01",
       "2024-04-04",
       "2024-04-05",
+      "2024-04-07",
     ]
   );
 
@@ -49,11 +50,6 @@ export const HabitProvider = ({ children }) => {
   );
 
   // Save data to local storage whenever it changes
-  useEffect(() => {
-    localStorage.setItem("userData", JSON.stringify(userData));
-    localStorage.setItem("habitData", JSON.stringify(habitData));
-    localStorage.setItem("isClaimed", JSON.stringify(isClaimed));
-  }, [userData, habitData, isClaimed]);
 
   // Reset habit completions when day changes
   useEffect(() => {
@@ -67,14 +63,7 @@ export const HabitProvider = ({ children }) => {
   }, []);
   const logout = () => {
     // Clear all items from local storage
-    const keys = Object.keys(localStorage);
-
-    // Iterate through the keys and remove items except for "user" and "isauth"
-    keys.forEach((key) => {
-      if (key !== "user" && key !== "isauth") {
-        localStorage.removeItem(key);
-      }
-    });
+    localStorage.clear();
 
     // Reset states to initial values
     setClaimed(false);
