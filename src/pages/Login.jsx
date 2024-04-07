@@ -7,9 +7,12 @@ function Login() {
   const navigate = useNavigate();
   const { setAuth, user } = useAuthContext();
   function handleLogin(data) {
-    if (data.email === user.email && data.password === user.password)
+    if (data.email === user.email && data.password === user.password) {
       navigate("/homepage");
-    setAuth(true);
+      setAuth(true);
+    } else {
+      alert("Wrong username or passwrod");
+    }
   }
   return (
     <div>
